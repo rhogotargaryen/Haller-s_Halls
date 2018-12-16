@@ -9,13 +9,12 @@ class UsersContainer extends Component {
     }
 
     myHeaders = new Headers({'Authorization': 
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNTQ0NzY0MzI1LCJleHAiOjE1NDQ3Nzg3MjUsImp0aSI6ImIwMDQwZmZjLTFhYmQtNGExMC04ZDc1LWI4Y2ZhZTA4NjZiYyJ9.JB_yo8yK7fnoUnxq6kw4kSQr6bOupAcllsXwyHJhiAY",
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNTQ0OTU5MDYwLCJleHAiOjE1NDQ5NzM0NjAsImp0aSI6ImJkNDlkMzdiLWJiMTktNDdkYy04M2Q1LWYxNTM4NzJmZDc2NSJ9.9CUwMLnuj_xckipPdijffRypoeJBp4CE2iQA0EK-yXY",
         'Accept': 'application/json',
         'Content-Type': 'application/json'})
 
 
     componentDidMount() {
-        debugger
         fetch("http://localhost:3001/api/users", { headers: 
             this.myHeaders})
             .then(resp => resp.json())
@@ -25,7 +24,7 @@ class UsersContainer extends Component {
     }
 
     renderUsers = () => {
-        return this.state.users.map(x => <div>{x.email}</div>)
+        if(this.state.users !== []) return this.state.users.map(x => <div>{x.email}</div>)
     }
 
     render() {
