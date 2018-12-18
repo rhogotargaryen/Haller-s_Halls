@@ -1,53 +1,57 @@
 import React, { Component} from 'react'
+import { connect } from 'react-redux'
+import loginAction from '../../actions/loginAction'
 
 class LoginComponent extends Component {
-    constructor() {
-        super()
-        this.state = {
-            email: "",
-            password: "",
-        }
-        this.handleSubmit = this.handleSubmit.bind(this)
+
+    state = {
+        email: "",
+        password: ""
     }
 
     handleChange = (event) => {
-        this.setState ({
+        this.setState({
             [event.target.name]: event.target.value
         })
     }
 
     handleSubmit = (event) => {
         event.preventDefault()
-        let reqData = {
-            method: 'post',
-            headers: {
-                'Content-Type': 'application/json'
-              },
-            body: JSON.stringify({user: this.state})
-        }
-        fetch('http://localhost:3001/login', reqData)
-        .then(resp => {console.log(resp.headers.get('authorization')); return resp.json()})
-        .then(data => {console.log(data)})
+        this.props.login()
+    }
+
+    consoleLog = () => {
+        console.log(this.props)
     }
 
     render() {
         return(
-            <form id='login-form' onSubmit={this.handleSubmit}>
-            <br></br>
-                <label>Email:
-                <input type='textfield' onChange={this.handleChange} name="email"/>
-                </label><br></br>
-            <br></br>
-                <label>Password:
-                <input type='password' onChange={this.handleChange} name="password"/>
-            <br></br></label><br></br>
-                <input type='submit'/>
-            </form>
+            <div>
+                <form id='login-form' onSubmit={this.handleSubmit}>
+                <br></br>
+                    <label>Email:
+                    <input type='textfield' onChange={this.handleChange} name="email"/>
+                    </label><br></br>
+                <br></br>
+                    <label>Password:
+                    <input type='password' onChange={this.handleChange} name="password"/>
+                <br></br></label><br></br>
+                    <input type='submit'/>
+                </form>
+                {this.consoleLog()}
+            </div>
         )
     }
     
 }
 
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setUser: () => dispatch({type: "SET_USER", payload: this.state}),
+        login: () => dispatch(loginAction({email: this.state.email, password: this.state.password}))
+    }
+}
 
-export default LoginComponent
+
+export default connect(null, mapDispatchToProps)(LoginComponent)

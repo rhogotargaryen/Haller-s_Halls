@@ -22,13 +22,13 @@ const store = createStore(
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   );
 
-ReactDOM.render(<Provider state={store}> (
+ReactDOM.render(<Provider store={store}>
 <Router>
     <React.Fragment>
         <Route exact path="/" component={App} />
         <Route exact path='/login' component={LoginComponent}/>
     </React.Fragment>
-</Router>) </Provider>,    
+</Router> </Provider>,    
     document.getElementById('root')
     );
 

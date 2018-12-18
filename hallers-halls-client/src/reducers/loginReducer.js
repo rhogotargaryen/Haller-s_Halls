@@ -1,12 +1,14 @@
 
 
-loginReducer = (state = [], action) => {
+export default function loginReducer(state = "", action) {
     switch(action.type) {
+        case("AUTHORIZING"):
+            return "loading"
         case("USER_AUTHED"):
-            return [...state, action.auth]
+            return action.auth
+        case("AUTH_FAILED"):
+            return "could not authenticate, please try again"
         default:
             return state
     }
 }
-
-export default loginReducer
