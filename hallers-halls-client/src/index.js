@@ -7,11 +7,14 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import LoginComponent from './components/user/login';
 import { createStore } from 'redux';
-import userReducer from './reducers/user';
+import loginReducer from './reducers/loginReducer';
+import userReducer from './reducers/userReducer';
+import usersReducer from './reducers/usersReducer';
 import { combineReducers } from "redux";
  
 const rootReducer = combineReducers({
-  user: loginReducer,
+  auth: loginReducer,
+  user: userReducer,
   users: usersReducer
 });
 const store = createStore(
@@ -32,4 +35,4 @@ ReactDOM.render(<Provider state={store}> (
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.register();
+serviceWorker.unregister();

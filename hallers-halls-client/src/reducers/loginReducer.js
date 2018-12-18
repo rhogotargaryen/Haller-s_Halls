@@ -1,9 +1,9 @@
 
 
-loginReducer = (state = {auth: ""}, action) => {
+loginReducer = (state = [], action) => {
     switch(action.type) {
         case("USER_AUTHED"):
-            return {...state, auth: action.payload}
+            return [...state, action.auth]
         default:
             return state
     }
