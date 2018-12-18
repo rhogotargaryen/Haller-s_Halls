@@ -28,8 +28,8 @@ const store = createStore(
 ReactDOM.render(<Provider store={store}>
 <Router>
     <React.Fragment>
-        <Route exact path="/" component={App} />
-        <Route exact path='/login' component={LoginComponent}/>
+        <Route exact path="/" render={(props) => <App {...props}/>} />
+        <Route exact path='/login' render={(props) => <LoginComponent {...props}/>}/>
     </React.Fragment>
 </Router> </Provider>,    
     document.getElementById('root')

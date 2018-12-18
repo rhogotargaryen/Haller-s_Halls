@@ -4,10 +4,7 @@ import loginAction from '../../actions/loginAction'
 
 class LoginComponent extends Component {
 
-    state = {
-        email: "",
-        password: ""
-    }
+    state = this.props.user
 
     handleChange = (event) => {
         this.setState({
@@ -22,7 +19,13 @@ class LoginComponent extends Component {
     }
 
     render() {
-        debugger
+        if (this.props.auth === "loading") {
+            return <p>Attempting to log in!</p>
+        }
+        else if (this.props.auth.length > 10) {
+            window.history.pushState(null, "", "/")
+            window.history.forward()
+        }
         return(
             <div>
                 <form id='login-form' onSubmit={this.handleSubmit}>
@@ -43,6 +46,12 @@ class LoginComponent extends Component {
 }
 
 
+const mapStateToProps = (state) => {
+    return { user: state.user,
+        auth: state.auth
+    };
+  };
+
 const mapDispatchToProps = (dispatch) => {
     return {
         setUser: (userData) => dispatch({type: "SET_USER", payload: userData}),
@@ -51,4 +60,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 
-export default connect(null, mapDispatchToProps)(LoginComponent)
+export default connect(mapStateToProps, mapDispatchToProps)(LoginComponent)
