@@ -17,14 +17,12 @@ class LoginComponent extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        this.props.login()
-    }
-
-    consoleLog = () => {
-        console.log(this.props)
+        this.props.setUser(this.state)
+        this.props.login(this.state)
     }
 
     render() {
+        debugger
         return(
             <div>
                 <form id='login-form' onSubmit={this.handleSubmit}>
@@ -38,7 +36,6 @@ class LoginComponent extends Component {
                 <br></br></label><br></br>
                     <input type='submit'/>
                 </form>
-                {this.consoleLog()}
             </div>
         )
     }
@@ -48,8 +45,8 @@ class LoginComponent extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setUser: () => dispatch({type: "SET_USER", payload: this.state}),
-        login: () => dispatch(loginAction({email: this.state.email, password: this.state.password}))
+        setUser: (userData) => dispatch({type: "SET_USER", payload: userData}),
+        login: (userData) => dispatch(loginAction(userData))
     }
 }
 
