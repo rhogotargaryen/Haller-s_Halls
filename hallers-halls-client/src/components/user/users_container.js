@@ -1,18 +1,16 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import fetchUsers from '../../actions/fetchUsers'
+
 
 class UsersContainer extends Component {
 
     componentDidMount() {
-        fetch("http://localhost:3001/api/users", { headers: 
-            this.myHeaders})
-            .then(resp => resp.json())
-            .then(data => {console.log(data); this.setState({
-                users: data
-        })})
+        this.props.dispatch(fetchUsers(this.props.auth))
     }
 
     renderUsers = () => {
-        if(this.state.users !== []) return this.state.users.map(x => <div>{x.email}</div>)
+        if(this.props.users) return this.props.users.map(x => <div>{x.email}</div>)
     }
 
     render() {
@@ -26,4 +24,12 @@ class UsersContainer extends Component {
             
 }
 
-export default UsersContainer
+const mapStateToProps = (state) => {
+    return {
+        users: state.users,
+        auth: state.auth,
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps)(UsersContainer)

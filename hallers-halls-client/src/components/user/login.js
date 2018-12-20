@@ -4,18 +4,14 @@ import loginAction from '../../actions/loginAction'
 
 class LoginComponent extends Component {
 
-    state = this.props.user
-
     handleChange = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value
-        })
+            this.props.user[event.target.name] = event.target.value
     }
 
     handleSubmit = (event) => {
         event.preventDefault()
-        this.props.setUser(this.state)
-        this.props.login(this.state)
+        this.props.setUser(this.props.user)
+        this.props.login(this.props.user)
     }
 
     render() {
@@ -23,7 +19,7 @@ class LoginComponent extends Component {
             return <p>Attempting to log in!</p>
         }
         else if (this.props.auth.length > 10) {
-            window.history.pushState(null, "", "/")
+            window.history.pushState({}, "home", "/")
             window.history.forward()
         }
         return(
