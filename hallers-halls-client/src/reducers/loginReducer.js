@@ -8,6 +8,8 @@ export default function loginReducer(state = "", action) {
             return action.auth
         case("AUTH_FAILED"):
             return "could not authenticate, please try again"
+        case("LOGOUT_USER"):
+            return ""
         default:
             return state
     }

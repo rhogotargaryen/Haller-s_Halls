@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import fetchUsers from '../../actions/fetchUsers'
 
 
@@ -10,7 +11,11 @@ class UsersContainer extends Component {
     }
 
     renderUsers = () => {
-        if(this.props.users) return this.props.users.map(x => <div>{x.email}</div>)
+        if(this.props.auth.length > 10) {
+            return this.props.users.map(x => <div>{x.email}</div>)
+        } else {
+            return <Redirect to='/login' />
+        }
     }
 
     render() {

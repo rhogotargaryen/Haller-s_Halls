@@ -1,24 +1,22 @@
 import React, { Component } from 'react';
-import UsersContainer from './components/user/users_container'
 import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import LoginComponent from './components/user/login';
 import { connect } from 'react-redux'
-import LogoutComponent from './components/user/logout'
+import SideBar from './components/layout/side_bar'
+import HeadDisplay from './components/layout/head_display'
+import MainDisplay from './components/layout/main_display'
 
 
 class App extends Component {
-
-  componentDidMount() {
- }
 
   render() {
     return (
       <Router>
           <React.Fragment>
-              <Route exact path="/" render={() => <UsersContainer />} />
-              <Route exact path='/login' render={() => <LoginComponent />}/>
-              <Route exact path='/logout' render={() => <LogoutComponent/>}/>
+              <HeadDisplay />
+              <SideBar />
+              <MainDisplay />
+
           </React.Fragment>
       </Router>
     );

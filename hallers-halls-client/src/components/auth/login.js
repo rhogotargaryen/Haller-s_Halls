@@ -1,5 +1,6 @@
 import React, { Component} from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import loginAction from '../../actions/loginAction'
 
 class LoginComponent extends Component {
@@ -19,24 +20,24 @@ class LoginComponent extends Component {
             return <p>Attempting to log in!</p>
         }
         else if (this.props.auth.length > 10) {
-            window.history.pushState({}, "home", "/")
-            window.history.forward()
-        }
+            return <Redirect to='/' />
+        } else {
         return(
-            <div>
-                <form id='login-form' onSubmit={this.handleSubmit}>
-                <br></br>
-                    <label>Email:
-                    <input type='textfield' onChange={this.handleChange} name="email"/>
-                    </label><br></br>
-                <br></br>
-                    <label>Password:
-                    <input type='password' onChange={this.handleChange} name="password"/>
-                <br></br></label><br></br>
-                    <input type='submit'/>
-                </form>
-            </div>
-        )
+                <div>
+                    <form id='login-form' onSubmit={this.handleSubmit}>
+                    <br></br>
+                        <label>Email:
+                        <input type='textfield' onChange={this.handleChange} name="email"/>
+                        </label><br></br>
+                    <br></br>
+                        <label>Password:
+                        <input type='password' onChange={this.handleChange} name="password"/>
+                    <br></br></label><br></br>
+                        <input type='submit'/>
+                    </form>
+                </div>
+            )
+        }
     }
     
 }
