@@ -13,21 +13,29 @@ import { combineReducers } from "redux";
 import storage from 'redux-persist/lib/storage'
 import { persistStore, persistReducer } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
+import createExpirationTransform from 'redux-persist-transform-expire';
 
 
 
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
+const expireTransform = createExpirationTransform({
+    expireKey: 'persistExpiresAt',
+    defaultState: {
+      auth: ''
+    }
+  });
 
 const persistConfig = {
     key: 'root',
     storage,
-    blacklist: ['users']
+    blacklist: ['users'],
+    transforms: [expireTransform]
   }
   
 const rootReducer = combineReducers({
-  auth: loginReducer,
+  login: loginReducer,
   user: userReducer,
   users: usersReducer
 });

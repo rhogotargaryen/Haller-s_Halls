@@ -21,7 +21,6 @@ class UsersContainer extends Component {
     render() {
         return (
             <div>
-                <p>test</p>
                 {this.renderUsers()}
             </div>
         )
@@ -32,7 +31,7 @@ class UsersContainer extends Component {
 const mapStateToProps = (state) => {
     return {
         users: state.users,
-        auth: state.auth,
+        auth: state.login.auth,
         user: state.user
     }
 }

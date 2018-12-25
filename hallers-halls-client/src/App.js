@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { connect } from 'react-redux'
 import SideBar from './components/layout/side_bar'
 import HeadDisplay from './components/layout/head_display'
@@ -14,13 +14,17 @@ class App extends Component {
       <Router>
           <React.Fragment>
               <HeadDisplay />
-              <SideBar />
-              <MainDisplay />
-
+                <div className="container" syle='height: 100vh'>
+                  <div className="row" >
+                  <SideBar />
+                  <MainDisplay />
+                </div>
+              </div>
           </React.Fragment>
       </Router>
     );
   }
+
 }
 
-export default connect()(App);
+export default connect(state => {return {auth: state.login.auth}})(App);

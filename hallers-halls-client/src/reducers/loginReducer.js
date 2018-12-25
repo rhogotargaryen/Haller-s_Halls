@@ -1,15 +1,15 @@
+import moment from 'moment'
 
-
-export default function loginReducer(state = "", action) {
+export default function loginReducer(state = {auth: "", persistExpiresAt: ""}, action) {
     switch(action.type) {
         case("AUTHORIZING"):
-            return "loading"
+            return {...state, auth: "loading" }
         case("USER_AUTHED"):
-            return action.auth
+            return {...state, auth: action.auth, persistExpiresAt: moment().add(4, 'h').format() }
         case("AUTH_FAILED"):
             return "could not authenticate, please try again"
         case("LOGOUT_USER"):
-            return ""
+            return { ...state, auth: "", persistExpiresAt: "" }
         default:
             return state
     }

@@ -45,7 +45,7 @@ class LoginComponent extends Component {
 
 const mapStateToProps = (state) => {
     return { user: state.user,
-        auth: state.auth
+        auth: state.login.auth
     };
   };
 
