@@ -1,4 +1,4 @@
-function usersReducer(state=[], action) {
+export default function usersReducer(state=[], action) {
     switch (action.type) {
         case("ADD_USERS"):
             return action.users
@@ -6,5 +6,3 @@ function usersReducer(state=[], action) {
             return state
     }
 }
-
-export default usersReducer
