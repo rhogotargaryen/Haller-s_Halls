@@ -12,7 +12,7 @@ class ItemsContainer extends Component {
     }
 
     renderItems = () => {
-        if(this.props.auth.length > 10) {
+        if(this.props.auth.length > 20) {
             return this.props.items.map(x => <Item item={x} />)
         } else {
             return <Redirect to='/login' />

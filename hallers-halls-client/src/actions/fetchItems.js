@@ -5,6 +5,6 @@ export default function fetchItems(auth) {
                .then(resp =>  resp.json())
                .then(items => {
                    dispatch({type: "ADD_ITEMS", items})
-           }).catch(err => err)
+           }).catch(err => console.log(err))
        }
    }

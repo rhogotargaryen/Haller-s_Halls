@@ -12,7 +12,7 @@ class UsersContainer extends Component {
     }
 
     renderUsers = () => {
-        if(this.props.auth.length > 10) {
+        if(this.props.auth.length > 20) {
             return this.props.users.map(x => <User user={x}/>)
         } else {
             return <Redirect to='/login' />

@@ -10,7 +10,9 @@ export default function loginAction(user) {
             body: JSON.stringify({user: user})
             })
         .then(resp => resp.headers.get('authorization'))
-        .then(auth => dispatch({type: "USER_AUTHED", auth}))
-        .catch(dispatch({type: "FAILED_AUTH"}))
+        .then(auth => {
+            return auth === null ? dispatch({type: "FAILED_AUTH"}) : dispatch({type: "USER_AUTHED", auth})
+            }
+        )
     }
 }

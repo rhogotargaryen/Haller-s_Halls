@@ -12,7 +12,7 @@ export default class MainDisplay extends Component {
         return (
             <div className="col-xs-8">
             <React.Fragment>
-                <Route exact path="/" render={() => <UsersContainer />} />
+                <Route exact path="/users" render={() => <UsersContainer />} />
                 <Route exact path="/items" render={() => <ItemsContainer />} />
                 <Route exact path='/login' render={() => <LoginComponent />}/>
                 <Route exact path='/logout' render={() => <LogoutComponent />}/>

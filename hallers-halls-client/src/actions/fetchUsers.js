@@ -6,6 +6,6 @@ export default function fetchUsers(auth) {
             .then(resp =>  resp.json())
             .then(users => {
                 dispatch({type: "ADD_USERS", users})
-        }).catch(err => err)
+        }).catch(err => console.log("must log in for most site functonality"))
     }
 }

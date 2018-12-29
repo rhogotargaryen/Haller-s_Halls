@@ -15,31 +15,39 @@ class LoginComponent extends Component {
         this.props.login(this.props.user)
     }
 
-    render() {
-        if (this.props.auth === "loading") {
-            return <p>Attempting to log in!</p>
-        }
-        else if (this.props.auth.length > 10) {
-            return <Redirect to='/' />
-        } else {
+    renderLoginForm = (message) => {
         return(
-                <div>
-                    <form id='login-form' onSubmit={this.handleSubmit}>
-                    <br></br>
-                        <label>Email:
-                        <input type='textfield' onChange={this.handleChange} name="email"/>
-                        </label><br></br>
-                    <br></br>
-                        <label>Password:
-                        <input type='password' onChange={this.handleChange} name="password"/>
-                    <br></br></label><br></br>
-                        <input type='submit'/>
-                    </form>
-                </div>
-            )
+            <div>
+                <h3>{message}</h3>
+                <form id='login-form' onSubmit={this.handleSubmit}>
+                <br></br>
+                    <label>Email:
+                    <input type='textfield' onChange={this.handleChange} name="email"/>
+                    </label><br></br>
+                <br></br>
+                    <label>Password:
+                    <input type='password' onChange={this.handleChange} name="password"/>
+                <br></br></label><br></br>
+                    <input type='submit'/>
+                </form>
+            </div>
+        )
+    }
+
+    render() {
+
+        if (this.props.auth.length > 10 && this.props.auth !== "FAILED LOGIN") {
+            return <Redirect to='/users' />
+        }
+        switch(this.props.auth) {
+            case("loading"):
+                return this.renderLoginForm("Attempting To Login.")
+            case("FAILED LOGIN"):
+                return this.renderLoginForm("Login Failed Try Again.")
+            default:
+                return this.renderLoginForm("Thank You for using our site. Please log in.")
         }
     }
-    
 }
 
 
