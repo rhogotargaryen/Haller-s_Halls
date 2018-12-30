@@ -35,7 +35,6 @@ class LoginComponent extends Component {
     }
 
     render() {
-
         if (this.props.auth.length > 10 && this.props.auth !== "FAILED LOGIN") {
             return <Redirect to='/users' />
         }

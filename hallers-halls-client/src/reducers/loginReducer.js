@@ -9,7 +9,9 @@ export default function loginReducer(state = {auth: "", persistExpiresAt: ""}, a
         case("FAILED_AUTH"):
             return {...state, auth: "FAILED LOGIN"}
         case("LOGOUT_USER"):
-            return { ...state, auth: "", persistExpiresAt: "" }
+            return { ...state, auth: "logging out", persistExpiresAt: "" }
+        case("LOGGED_OUT"):
+            return { ...state, auth: "", persistExpiresAt: ""}
         default:
             return state
     }

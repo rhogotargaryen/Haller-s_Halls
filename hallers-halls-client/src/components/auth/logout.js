@@ -1,20 +1,35 @@
 import React, { Component} from 'react'
 import { connect } from 'react-redux'
+import logoutAction from '../../actions/logoutAction'
 
 class LogoutComponent extends Component {
 
     logOut = function (event) {
         event.preventDefault()
-        this.props.dispatch({type: "LOGOUT_USER"})
+        this.props.logout(this.props.auth)
     }.bind(this)
 
     render() {
-        return (
-            <div> 
-                <button href="" onClick={this.logOut}>logout</button>
-            </div>
-        )
+        if (this.props.auth === "logging out") {
+            return <h3>Logging you out now</h3>
+        }
+        else if (this.props.auth.length > 20) {
+            return (
+                <div> 
+                    <button href="" onClick={this.logOut}>logout</button>
+                </div>
+            )
+        } else {
+            return <h3>Not Logged In</h3>
+        }
     }
 }
 
-export default connect()(LogoutComponent)
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        logout: (auth) => dispatch(logoutAction(auth))
+    }
+}
+
+export default connect((state) => {return {auth: state.login.auth}}, mapDispatchToProps)(LogoutComponent)
