@@ -4,7 +4,7 @@ export default function fetchItems(auth) {
            return fetch("http://localhost:3001/api/items", { headers: { Authorization: auth}})
                .then(resp =>  resp.json())
                .then(items => {
-                   dispatch({type: "ADD_ITEMS", items})
-           }).catch(err => console.log(err))
+                   dispatch({type: "ADD_ITEMS", items})})
+            .catch(err => console.log(err))
        }
    }

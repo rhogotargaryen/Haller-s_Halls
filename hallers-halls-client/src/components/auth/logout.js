@@ -13,7 +13,7 @@ class LogoutComponent extends Component {
         if (this.props.auth === "logging out") {
             return <h3>Logging you out now</h3>
         }
-        else if (this.props.auth.length > 20) {
+        else if (this.props.auth.includes("Bearer")) {
             return (
                 <div> 
                     <button href="" onClick={this.logOut}>logout</button>

@@ -12,8 +12,8 @@ class ItemsContainer extends Component {
     }
 
     renderItems = () => {
-        if(this.props.auth.length > 20) {
-            return this.props.items.map(x => <Item item={x} />)
+        if(this.props.auth.includes("Bearer")) {
+            return this.props.items.map((x, i) => <Item key={i} item={x} />)
         } else {
             return <Redirect to='/login' />
         }

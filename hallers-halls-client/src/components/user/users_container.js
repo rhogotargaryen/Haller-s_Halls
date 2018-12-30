@@ -12,8 +12,8 @@ class UsersContainer extends Component {
     }
 
     renderUsers = () => {
-        if(this.props.auth.length > 20) {
-            return this.props.users.map(x => <User user={x}/>)
+        if(this.props.auth.includes("Bearer")) {
+            return this.props.users.map((x, i) => <User key-={i} user={x}/>)
         } else {
             return <Redirect to='/login' />
         }
