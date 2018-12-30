@@ -8,6 +8,7 @@ export default class SideBar extends Component {
     render() {
         return (
                 <div className="col-xs-4">
+                    <div><Link to="/user">Your Homepage</Link></div>
                     <div><Link to="/users">users</Link></div>
                     <div><Link to="/items">items</Link></div>
                     <div><Link to="/login">login</Link></div>
