@@ -1,17 +1,19 @@
-export default function userReducer(state = { email: "", password: "", name: "", id: null}, action) {
+import moment from 'moment'
+
+export default function userReducer(state = { email: "", password: "", name: "", persistExpiresAt: "", id: null}, action) {
     switch (action.type) {
         case("SET_USER"):
-            return {email: action.payload.email, password: "no need to store"}
+            return {...state, email: action.payload.email, password: "no need to store"}
         case("USER_AUTHED"):
-            return {email: action.user.email, name: action.user.name, id: action.user.id, password: "no need to store"}
+            return {...state, email: action.user.email, name: action.user.name, id: action.user.id, persistExpiresAt: moment().add(4, 'h').format()}
         case("LOGOUT_USER"):
-            return {email: "", password: ""}
+            return {...state, email: "", password: "", name: "", id: null, persistExpiresAt: "", messages: null}
         case("EDITING_USER"):
-            return {...state}
+            return {...state, messages: ["uploading changes"]}
         case("EDITED_USER"):
-            return {...state, name: action.userData.name, email: action.userData.email}
+            return {...state, name: action.userData.name, email: action.userData.email, messages: null}
         case("FAILED_EDIT"):
-            return {...state, message: "could not edit"}
+            return {...state, messages: action.userData.errors}
         default:
             return state
     }

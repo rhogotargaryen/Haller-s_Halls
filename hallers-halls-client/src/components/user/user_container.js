@@ -16,6 +16,7 @@ class userContainer extends Component {
         }
     }
 
+
     startEdit = (event) => {
         event.preventDefault()
         this.setState({
@@ -27,6 +28,14 @@ class userContainer extends Component {
         this.setState({
             [event.target.name]: event.target.value
         })
+    }
+
+    renderErrors() {
+        if(!!this.props.user.messages) {
+            return this.props.user.messages.map((x, i) => {
+                return <div key={i}>{x}</div>
+            })
+        }
     }
 
     handleSubmit = (event) => {
@@ -42,8 +51,10 @@ class userContainer extends Component {
             return (
                 <div>
                     <h3> Your User Page </h3><br></br>
-                    <div>Name:{this.state.name}</div>
-                    <div>Email:{this.state.email}</div>
+                    {this.renderErrors()}
+                    <br></br>
+                    <div>Name: {this.props.user.name}</div>
+                    <div>Email: {this.props.user.email}</div>
                     <div>Id: {this.props.user.id}</div><br></br>
                     <button onClick={this.startEdit}>Edit Your Info</button>
                 </div>
@@ -52,6 +63,7 @@ class userContainer extends Component {
         else if (!!this.props.user.id & this.state.edit === true) {
             return (                <div>
                 <h3> Your User Page (Editting) </h3><br></br>
+                {this.renderErrors()}
                     <form onSubmit={this.handleSubmit}>
                         <input type="text" name="name" value={this.state.name} onChange={this.handleChange}/><br></br>
                         <input type="text" name="email" value={this.state.email} onChange={this.handleChange}/><br></br>

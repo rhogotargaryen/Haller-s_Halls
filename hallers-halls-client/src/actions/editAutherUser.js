@@ -5,7 +5,13 @@ export default function editAuthedUser(user) {
             headers: { Authorization: user.auth, 'Content-Type': 'application/json'},
             body: JSON.stringify({user: {...user, auth: ""}})})
             .then(resp => resp.json())
-            .then(userData => dispatch({type: "EDITED_USER", userData}))
-        .catch(err => dispatch({type: "FAILED_EDIT"}))
+            .then(userData => {
+                if (userData.errors) {
+                    return dispatch({type: "FAILED_EDIT", userData})
+                }
+                else {
+                    return dispatch({type: "EDITED_USER", userData})
+                }
+            })
     }
 }
