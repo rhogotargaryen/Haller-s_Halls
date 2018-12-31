@@ -12,7 +12,7 @@ export default function userReducer(state = { email: "", password: "", name: "",
             return {...state, messages: ["uploading changes"]}
         case("EDITED_USER"):
             return {...state, name: action.userData.name, email: action.userData.email, messages: null}
-        case("FAILED_EDIT"):
+        case("FAILED_MESSAGE"):
             return {...state, messages: action.userData.errors}
         default:
             return state
