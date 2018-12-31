@@ -16,7 +16,7 @@ class App extends Component {
               <HeadDisplay />
                 <div className="container" syle='height: 100vh'>
                   <div className="row" >
-                  <SideBar />
+                  <SideBar auth={this.props.auth}/>
                   <MainDisplay />
                 </div>
               </div>

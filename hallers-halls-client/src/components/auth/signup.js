@@ -1,25 +1,56 @@
 import React, { Component} from 'react'
+import postUserAction from '../../actions/postUserAction'
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
+import loginAction from '../../actions/loginAction'
 
 class SignUp extends Component {
-    state  = {
-        name: "",
-        email: "",
-        password: ""
+        state = {
+                name: this.props.user.name,
+                email: this.props.user.email,
+                password: "",
+            }
+
+    renderErrors() {
+        if(!!this.props.user.messages) {
+            return this.props.user.messages.map((x, i) => {
+                return <div key={i}>{x}</div>
+            })
+        }
+    }
+
+    handleChange = function(event) {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }.bind(this)
+
+    handleSubmit = (event) => {
+        event.preventDefault()
+        this.props.postUserAction(this.state)
+        this.props.loginAction(this.state)
     }
 
     render() {
+        if(this.props.auth.includes("Bearer")) {
+            return <Redirect to="/user" />
+        }
         return (
-        <div>
-            <h3> Your User Page (Editting) </h3><br></br>
-            {this.renderErrors()}
-            <form onSubmit={this.handleSubmit}>
-                <input type="text" name="name" value={this.state.name} onChange={this.handleChange}/><br></br>
-                <input type="text" name="email" value={this.state.email} onChange={this.handleChange}/><br></br>
-                <div>Id: {this.props.user.id} <strong>can not be editted</strong></div>
-                <button type="submit">Save Changes</button>
-            </form><br></br>
-        </div>)
+            <div>
+                <h3> Sign Up </h3><br></br>
+                    <div>{this.renderErrors()}</div>
+                <form onSubmit={this.handleSubmit}>
+                    <label>Name: </label>
+                    <input type="text" name="name" value={this.state.name} onChange={this.handleChange}/><br></br>
+                    <label>Email: </label>
+                    <input type="text" name="email" value={this.state.email} onChange={this.handleChange}/><br></br>
+                    <label>Password: </label>
+                    <input type="password" name="password" value={this.state.password} onChange={this.handleChange}/><br></br>
+                    <button type="submit">Create User</button>
+                </form><br></br>
+            </div>
+        )
     }
 }
 
-export default SignUp
+export default connect(state => {return {user: state.user, auth: state.login.auth}}, {postUserAction, loginAction})(SignUp)

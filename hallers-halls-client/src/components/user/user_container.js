@@ -12,7 +12,6 @@ class userContainer extends Component {
             name: this.props.user.name,
             email: this.props.user.email,
             id: this.props.user.id,
-            auth: this.props.auth
         }
     }
 
@@ -82,4 +81,4 @@ class userContainer extends Component {
 
 
 
-export default connect(state => {return {user: state.user, auth: state.login.auth}}, {editAuthedUser})(userContainer)
+export default connect(state => {return {user: state.user}}, {editAuthedUser})(userContainer)
