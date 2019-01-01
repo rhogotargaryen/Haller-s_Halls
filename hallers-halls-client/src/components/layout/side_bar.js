@@ -4,7 +4,13 @@ import { Link } from 'react-router-dom'
 export default class SideBar extends Component {
     
     renderAuthLinks() {
-        return this.props.auth.includes("Bearer") ? <div><Link to="/user">Your Homepage</Link></div> : <div><Link to="/signup">Create User</Link></div>
+        if (this.props.auth.includes("Bearer")) {
+            return (<div><div><Link to="/user">Your Homepage</Link></div><br></br>
+            <div><Link to="/logout">logout</Link></div></div>)
+        } else {
+            return (<div><div><Link to="/signup">Create User</Link></div><br></br>
+                    <div><Link to="/login">login</Link></div></div>)
+        }
     }
 
     render() {
@@ -13,8 +19,8 @@ export default class SideBar extends Component {
                     {this.renderAuthLinks()}
                     <div><Link to="/users">users</Link></div>
                     <div><Link to="/items">items</Link></div>
-                    <div><Link to="/login">login</Link></div>
-                    <div><Link to="/logout">logout</Link></div>
+                    
+                    
                 </div>
         )
     }
