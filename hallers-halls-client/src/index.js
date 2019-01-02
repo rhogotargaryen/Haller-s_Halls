@@ -29,7 +29,7 @@ const expireTransform = createExpirationTransform({
   });
 
 const persistConfig = {
-    key: 'root',
+    key: 'nu_root',
     storage,
     blacklist: ['users', 'items'],
     transforms: [expireTransform]

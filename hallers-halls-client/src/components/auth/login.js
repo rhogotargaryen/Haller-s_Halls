@@ -36,7 +36,7 @@ class LoginComponent extends Component {
 
     render() {
         if (this.props.auth.includes("Bearer")) {
-            return <Redirect to='/user' />
+            return <Redirect to='/users' />
         }
         switch(this.props.auth) {
             case("loading"):

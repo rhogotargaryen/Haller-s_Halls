@@ -8,7 +8,7 @@ export default class SideBar extends Component {
             return (<div><div><Link to="/user">Your Homepage</Link></div><br></br>
             <div><Link to="/logout">logout</Link></div></div>)
         } else {
-            return (<div><div><Link to="/signup">Create User</Link></div><br></br>
+            return (<div><div><Link to="/users/new">Create User</Link></div><br></br>
                     <div><Link to="/login">login</Link></div></div>)
         }
     }

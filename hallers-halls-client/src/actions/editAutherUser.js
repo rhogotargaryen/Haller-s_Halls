@@ -8,8 +8,7 @@ export default function editAuthedUser(user) {
             .then(userData => {
                 if (userData.errors) {
                     return dispatch({type: "FAILED_USER", userData})
-                }
-                else {
+                } else {
                     return dispatch({type: "SUCCESS_USER", userData})
                 }
             }).catch(err => dispatch({type: "FAILED_USER", userData: {errors: ["somethign went wrong"] }}))
