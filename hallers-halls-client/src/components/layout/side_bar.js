@@ -5,7 +5,7 @@ export default class SideBar extends Component {
     
     renderAuthLinks() {
         if (this.props.auth.includes("Bearer")) {
-            return (<div><div><Link to="/user">Your Homepage</Link></div><br></br>
+            return (<div><div><Link to={`/users/${this.props.user.id}`}>Your Homepage</Link></div><br></br>
             <div><Link to="/logout">logout</Link></div></div>)
         } else {
             return (<div><div><Link to="/users/new">Create User</Link></div><br></br>
@@ -19,8 +19,6 @@ export default class SideBar extends Component {
                     {this.renderAuthLinks()}
                     <div><Link to="/users">users</Link></div>
                     <div><Link to="/items">items</Link></div>
-                    
-                    
                 </div>
         )
     }

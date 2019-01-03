@@ -55,7 +55,7 @@ class authedUser extends Component {
                             <input type="text" name="email" value={this.state.email} onChange={this.handleChange}/><br></br>
                             <div>Id: {this.props.user.id} <strong>can not be editted</strong></div>
                         <button type="submit">Save Changes</button><br></br>
-                        <Link to={`/user`}>Back to your Homepage</Link>
+                        <Link to={`/users/${this.props.user.id}`}>Back to your Homepage</Link>
                     </form><br></br>
                 </div>)
         } else {
@@ -67,7 +67,7 @@ class authedUser extends Component {
                         <div>Name: {this.props.user.name}</div>
                         <div>Email: {this.props.user.email}</div>
                         <div>Id: {this.props.user.id}</div><br></br>
-                    <Link to={`/user/edit`}>Edit your Info</Link>
+                    <Link to={`/users/${this.props.user.id}/edit`}>Edit your Info</Link>
                     </div>
             )
         }

@@ -16,7 +16,7 @@ class App extends Component {
               <HeadDisplay />
                 <div className="container" syle='height: 100vh'>
                   <div className="row" >
-                  <SideBar auth={this.props.auth}/>
+                  <SideBar auth={this.props.auth} user={this.props.user}/>
                   <MainDisplay />
                 </div>
               </div>
@@ -27,4 +27,4 @@ class App extends Component {
 
 }
 
-export default connect(state => {return {auth: state.login.auth}})(App);
+export default connect(state => {return {auth: state.login.auth, user: state.user}})(App);

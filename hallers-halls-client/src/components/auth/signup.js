@@ -33,7 +33,7 @@ class SignUp extends Component {
 
     render() {
         if(this.props.auth.includes("Bearer")) {
-            return <Redirect to="/user" />
+            return <Redirect to={`${this.props.user.id}`} />
         }
         return (
             <div>

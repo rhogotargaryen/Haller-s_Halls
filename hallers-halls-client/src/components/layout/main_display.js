@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import LoginComponent from '../auth/login';
 import LogoutComponent from '../auth/logout'
 import UsersContainer from '../user/users_container'
@@ -14,13 +14,15 @@ export default class MainDisplay extends Component {
         return (
             <div className="col-xs-8">
             <React.Fragment>
-                <Route exact path="/user" render={(routerProps) => <UserContainer {...routerProps} />} />
-                <Route exact path="/users" render={() => <UsersContainer />} />
-                <Route exact path="/user/new" render={() => <SignUp />} />
-                <Route exact path="/user/edit" render={(routerProps) => <UserContainer {...routerProps}/>} />
-                <Route path="/users/:userId" render={(routerProps) => <UserContainer {...routerProps} />} />
+                <Switch>
+                    <Route exact path="/users/:userId/edit" render={(routerProps) => <UserContainer edit={true} {...routerProps} />} />
+                    <Route exact path="/user/edit" render={(routerProps) => <UserContainer edit={true} {...routerProps}/>} />
+                    <Route exact path="/users/new" render={(routerProps) => <SignUp />} />
+                    <Route exact path="/users/:userId" render={(routerProps) => <UserContainer edit={false} {...routerProps} />} />
+                    <Route exact path="/users" render={() => <UsersContainer />} />
+                </Switch>
+                <Route exact path="/items/:itemId" render={() => <ItemContainer />} />
                 <Route exact path="/items" render={() => <ItemsContainer />} />
-                <Route path="/items/:itemId" render={() => <ItemContainer />} />
                 <Route exact path='/login' render={() => <LoginComponent />}/>
                 <Route exact path='/logout' render={() => <LogoutComponent />}/>
             </React.Fragment>
