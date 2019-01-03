@@ -13,7 +13,7 @@ class userContainer extends Component {
     }
 
     selectedUser(showUserId) {
-        let a = this.props.users.filter(x => {return x.id === showUserId})
+        const a = this.props.users.filter(x => {return x.id === showUserId})
         return a.length !== 0 ? a[0] : {id: null}
     }
 
@@ -23,7 +23,7 @@ class userContainer extends Component {
             if (this.props.edit === true && a === this.props.user.id){
                 return <AuthedUser edit={true}/>
             } else if (this.props.edit === true && a !== this.props.user.id) {
-                return <div><p>you're not authorized to edit someone elses account, you could try but it wouldnt work :(</p></div>
+                return <div><p>you're not authorized to edit someone elses account :(</p></div>
             } else if (this.props.edit === false && a === this.props.user.id) {
                 return <AuthedUser edit={false}/>
             } else if (this.props.new === true) {

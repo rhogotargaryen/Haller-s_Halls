@@ -14,15 +14,18 @@ export default class MainDisplay extends Component {
         return (
             <div className="col-xs-8">
             <React.Fragment>
-                <Switch>
-                    <Route exact path="/users/:userId/edit" render={(routerProps) => <UserContainer edit={true} {...routerProps} />} />
-                    <Route exact path="/user/edit" render={(routerProps) => <UserContainer edit={true} {...routerProps}/>} />
-                    <Route exact path="/users/new" render={(routerProps) => <SignUp />} />
-                    <Route exact path="/users/:userId" render={(routerProps) => <UserContainer edit={false} {...routerProps} />} />
-                    <Route exact path="/users" render={() => <UsersContainer />} />
-                </Switch>
-                <Route exact path="/items/:itemId" render={() => <ItemContainer />} />
+                <Route exact path="/" render={() => <LoginComponent />} />
+                <Route exact path="/users/:userId/edit" render={(routerProps) => <UserContainer edit={true} {...routerProps} />} />
+                <Route exact path="/user/edit" render={(routerProps) => <UserContainer edit={true} {...routerProps}/>} />
+                <Route exact path="/users/new" render={(routerProps) => <SignUp />} />
+                <Route exact path="/users/:userId" render={(routerProps) => <UserContainer edit={false} {...routerProps} />} />
+                <Route exact path="/users" render={() => <UsersContainer />} />
+            <Switch>
+                <Route exact path="/items/new" render={(routerProps) => <ItemContainer new={true} {...routerProps} />} />
+                <Route exact path="/items/:itemId/edit" render={(routerProps) => <ItemContainer edit={true} {...routerProps} />} />
+                <Route exact path="/items/:itemId" render={(routerProps) => <ItemContainer {...routerProps} />} />
                 <Route exact path="/items" render={() => <ItemsContainer />} />
+            </Switch>
                 <Route exact path='/login' render={() => <LoginComponent />}/>
                 <Route exact path='/logout' render={() => <LogoutComponent />}/>
             </React.Fragment>

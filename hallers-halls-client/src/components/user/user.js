@@ -4,7 +4,7 @@ const User = (props) => {
     if (props.user.id === null) {
         return (
             <div>
-                <h3>User Not Found</h3>
+                <h2>User Not Found</h2>
             </div>
     )} else {
         return (
