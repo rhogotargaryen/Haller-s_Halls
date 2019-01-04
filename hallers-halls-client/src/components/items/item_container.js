@@ -1,32 +1,36 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import fetchItems from '../../actions/fetchItems'
-
+import fetchItem from '../../actions/fetchItem'
+import Item from './item'
+import EditItem from './edit_item'
+import NuItem from './nu_item'
 
 class ItemContainer extends Component {
 
     componentDidMount() {
-        this.props.dispatch(fetchItems(this.props.auth))
-    }
-
-    selectedItem(showItemId) {
-        const a = this.props.items.filter(x => x.id === showItemId)
-        return (a.length === 0) ? null : a[0].id
+        this.props.dispatch(fetchItem({auth: this.props.auth, itemId: parseInt(this.props.match.params.itemId)}))
     }
 
     render() {
+        const a = !!this.props.item.user.id 
         if (this.props.auth.includes("Bearer")) {
-            const a = parseInt(this.props.match.params.itemId)
-            const b = this.selectedItem(a)
-            if (this.props.edit === true && b === this.props.user.id){
-                return <div>AUTHED ITEM EDIT</div>
-            } else if (this.props.edit === true && b !== this.props.user.id) {
+            if (this.props.edit === true && this.props.item.user.id === this.props.user.id){
+                return <EditItem auth={this.props.auth} item={this.props.item}/>
+            } else if (this.props.edit === true && this.props.item.user.id !== this.props.user.id && a) {
                 return <div><p>you're not authorized to edit someone elses item :(</p></div>
-            } else if (this.props.edit === false && b === this.props.user.id) {
-                return <div>AUTHED ITEM SHOW</div>
+            } else if (this.props.edit === false && this.props.item.user.id === this.props.user.id) {
+                return <Item item={this.props.item} auth={this.props.auth} />
+            } else if (this.props.edit === false && !!this.props.user.id && this.props.item.id !== null) {
+                return (
+                <div><br></br>
+                    <div>Name: {this.props.item.name}</div>
+                    <div>description: {this.props.item.description}</div>
+                    <div>belongs to: {this.props.item.user.name}</div>
+                    <div>price:{this.props.item.price}</div>
+                </div>)
             } else if (this.props.new === true) {
-                return <div>NEW ITEM</div>
+                return <NuItem auth={this.props.auth}/>
             } else {
                 return <div>Item Not Found</div>
             }
@@ -34,7 +38,7 @@ class ItemContainer extends Component {
             return  <Redirect to='/login'/>
         }
     }
-
 }
 
-export default connect(state => {return {items: state.items, user: state.user, auth: state.login.auth}})(ItemContainer)
+export default connect(state => {return {user: state.user, auth: state.login.auth, item: state.item}})(ItemContainer)
+

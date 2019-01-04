@@ -8,6 +8,7 @@ class SignUp extends Component {
         state = {
                 name: this.props.user.name,
                 email: this.props.user.email,
+                refresh: true,
                 password: "",
             }
 
@@ -33,7 +34,7 @@ class SignUp extends Component {
 
     render() {
         if(this.props.auth.includes("Bearer")) {
-            return <Redirect to={`${this.props.user.id}`} />
+            return <Redirect to={`/users/${this.props.user.id}`} />
         }
         return (
             <div>

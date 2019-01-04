@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import editAuthedUser from '../../actions/editAutherUser'
 import { Link } from 'react-router-dom'
-import { Redirect } from 'react-router-dom'
 
 class authedUser extends Component {
     constructor(props) {

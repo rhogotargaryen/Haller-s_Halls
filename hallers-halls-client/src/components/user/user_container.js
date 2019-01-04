@@ -26,13 +26,15 @@ class userContainer extends Component {
                 return <div><p>you're not authorized to edit someone elses account :(</p></div>
             } else if (this.props.edit === false && a === this.props.user.id) {
                 return <AuthedUser edit={false}/>
-            } else if (this.props.new === true) {
-                return <SignUp />
+            } else if (isNaN(a) && !!this.props.user.id) {
+                return <Redirect to={`/users/${this.props.user.id}`} />
             } else {
                 return <User user={this.selectedUser(a)}/>
             }
+        } else if (!this.props.match.url.includes("new")) {
+            return  <Redirect to="/login" />
         } else {
-            return  <Redirect to='/login'/>
+            return <SignUp />
         }
     }
 }

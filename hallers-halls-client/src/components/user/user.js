@@ -6,7 +6,10 @@ const User = (props) => {
             <div>
                 <h2>User Not Found</h2>
             </div>
-    )} else {
+    )
+    } else if(props.user.id === null) {
+        return <p>rest</p>
+    }else {
         return (
             <div>
                 <div>Name:{props.user.name}</div>
