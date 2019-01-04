@@ -1,25 +1,18 @@
 import React, { Component } from 'react'
-import editItemAction from '../../actions/editItemAction'
 import postItemAction from '../../actions/postItemAction'
-
+import { connect } from 'react-redux'
 
 class NuItem extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            name: this.props.item.name,
-            description: this.props.item.description,
-            id: this.props.item.id,
-            auth: this.props.auth
+        state = {
+            name: "",
+            description: "",
+            id: null,
+            price: null,
+            auth: this.props.auth,
         }
-    }
-
-
-    startEdit = (event) => {
-        event.preventDefault()
-        this.setState({
-            edit: true
-        })
+    
+    componentWillMount() {
+        this.props.dispatch({type: "DROP_ITEM"})
     }
 
     handleChange = (event) => {
@@ -29,16 +22,10 @@ class NuItem extends Component {
     }
 
     renderErrors() {
-        if(!!this.props.item.messages) {
+        if (!!this.props.item.messages) {
             return this.props.item.messages.map((x, i) => {
                 return <div key={i}>{x}</div>
-            })
-        }
-    }
-
-    handleSubmitEdit = (event) => {
-        event.preventDefault()
-        this.props.dispatch(editItemAction(this.state))
+        })}
     }
 
     handleSubmitPost = (event) => {
@@ -47,15 +34,14 @@ class NuItem extends Component {
     }    
 
     render() {
-            return (
+        return (
             <div>
                 <h3> Create an Item </h3><br></br>
                 {this.renderErrors()}
-                    <form onSubmit={this.handleSubmitEdit}>
-                        <input type="text" name="name" value={this.state.name} onChange={this.handleChange}/><br></br>
-                        <input type="text" name="description" value={this.state.description} onChange={this.handleChange}/><br></br>
-                        <input type="integer" name="price" value={this.state.price} onChange={this.handleChange}/><br></br>
-                        <div>Id: {this.props.item.id} <strong>can not be editted</strong></div>
+                    <form onSubmit={this.handleSubmitPost}>
+                        NAME: <input type="text" name="name" value={this.state.name} onChange={this.handleChange}/><br></br>
+                        DESC: <input type="text" name="description" value={this.state.description} onChange={this.handleChange}/><br></br>
+                        PRICE: <input type="number" name="price" onChange={this.handleChange}/><br></br>
                     <button type="submit">Create Item</button>
                 </form><br></br>
             </div>)
@@ -63,4 +49,4 @@ class NuItem extends Component {
 
 }
 
-export default NuItem
+export default connect(state => {return {auth: state.login.auth, item: state.item}})(NuItem)

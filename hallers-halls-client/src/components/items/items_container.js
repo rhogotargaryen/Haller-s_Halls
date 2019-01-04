@@ -21,7 +21,7 @@ class ItemsContainer extends Component {
 
     render() {
         return (
-            <div>
+            <div className="flex-container justify-items-center">
                 {this.renderItems()}
             </div>
         )

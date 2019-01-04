@@ -6,9 +6,9 @@ export default function editItemAction(itemInfo) {
             body: JSON.stringify({item: {...itemInfo}})})
             .then(resp => {return resp.json()})
             .then(item => {if (item.errors) {
-                return dispatch({type: "FAILED_ITEM", errors: [item.errors]})
+                return dispatch({type: "FAILED_ITEM", errors: item.errors})
             } else {
-                return dispatch({type: "SUCCESS_ITEM", item})
+                return dispatch({type: "SUCCESS_ITEM", item: {...item, messages: ["saved!"]}})
             }})
         .catch( err => {debugger; return dispatch({type: "FAILED_ITEM", err})})
     }

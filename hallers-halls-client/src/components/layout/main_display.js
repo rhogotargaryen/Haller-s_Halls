@@ -6,7 +6,9 @@ import UsersContainer from '../user/users_container'
 import ItemsContainer from '../items/items_container'
 import ItemContainer from '../items/item_container'
 import UserContainer from '../user/user_container'
-export default class MainDisplay extends Component {
+import NuItem from '../items/nu_item'
+
+class MainDisplay extends Component {
 
     render() {
         return (
@@ -19,7 +21,7 @@ export default class MainDisplay extends Component {
                     <Route exact path="/users/new" render={(routerProps) => <UserContainer new={true} {...routerProps} />} />
                     <Route exact path="/users/:userId" render={(routerProps) => <UserContainer edit={false} {...routerProps} />} />
                     <Route exact path="/users" render={() => <UsersContainer />} />
-                    <Route exact path="/items/new" render={(routerProps) => <ItemContainer new={true} {...routerProps} />} />
+                    <Route exact path="/items/new" render={() => <NuItem />} />
                     <Route exact path="/items/:itemId/edit" render={(routerProps) => <ItemContainer edit={true} {...routerProps} />} />
                     <Route exact path="/items/:itemId" render={(routerProps) => <ItemContainer {...routerProps} edit={false} />} />
                     <Route exact path="/items" render={() => <ItemsContainer />} />
@@ -32,3 +34,4 @@ export default class MainDisplay extends Component {
     }
 }
 
+export default MainDisplay

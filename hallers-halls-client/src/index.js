@@ -30,9 +30,9 @@ const expireTransform = createExpirationTransform({
   });
 
 const persistConfig = {
-    key: 'nu2_root',
+    key: 'nu6_root',
     storage,
-    blacklist: ['users', 'items'],
+    blacklist: ['users', 'items', 'item'],
     transforms: [expireTransform]
   }
   

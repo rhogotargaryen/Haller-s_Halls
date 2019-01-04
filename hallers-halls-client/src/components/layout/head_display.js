@@ -3,7 +3,6 @@ import { Nav, Navbar, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
 
 export default class HeadDisplay extends Component {
 
-
     render() {
         return (<Navbar collapseOnSelect>
           <Navbar.Header>

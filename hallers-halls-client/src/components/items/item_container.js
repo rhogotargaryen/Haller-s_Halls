@@ -13,22 +13,15 @@ class ItemContainer extends Component {
     }
 
     render() {
-        const a = !!this.props.item.user.id 
         if (this.props.auth.includes("Bearer")) {
             if (this.props.edit === true && this.props.item.user.id === this.props.user.id){
                 return <EditItem auth={this.props.auth} item={this.props.item}/>
-            } else if (this.props.edit === true && this.props.item.user.id !== this.props.user.id && a) {
+            } else if (this.props.edit === true && this.props.item.user.id !== this.props.user.id && !!this.props.item.user.id) {
                 return <div><p>you're not authorized to edit someone elses item :(</p></div>
             } else if (this.props.edit === false && this.props.item.user.id === this.props.user.id) {
-                return <Item item={this.props.item} auth={this.props.auth} />
+                return <Item item={this.props.item} drop={this.props.dispatch} auth={this.props.auth} />
             } else if (this.props.edit === false && !!this.props.user.id && this.props.item.id !== null) {
-                return (
-                <div><br></br>
-                    <div>Name: {this.props.item.name}</div>
-                    <div>description: {this.props.item.description}</div>
-                    <div>belongs to: {this.props.item.user.name}</div>
-                    <div>price:{this.props.item.price}</div>
-                </div>)
+                return <Item show={true} drop={this.props.dispatch} item={this.props.item} />
             } else if (this.props.new === true) {
                 return <NuItem auth={this.props.auth}/>
             } else {
