@@ -41,7 +41,7 @@ class NuItem extends Component {
                     <form onSubmit={this.handleSubmitPost}>
                         NAME: <input type="text" name="name" value={this.state.name} onChange={this.handleChange}/><br></br>
                         DESC: <input type="text" name="description" value={this.state.description} onChange={this.handleChange}/><br></br>
-                        PRICE: <input type="number" name="price" onChange={this.state.handleChange}/><br></br>
+                        PRICE: <input type="number" name="price" onChange={this.handleChange}/><br></br>
                     <button type="submit">Create Item</button>
                 </form><br></br>
             </div>)

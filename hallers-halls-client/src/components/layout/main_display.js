@@ -12,7 +12,7 @@ class MainDisplay extends Component {
 
     render() {
         return (
-            <div className="col-xs-8">
+            <div className="col-8">
             <React.Fragment>
                 <Switch>
                     <Route exact path="/" render={() => <LoginComponent />} />
@@ -22,7 +22,7 @@ class MainDisplay extends Component {
                     <Route exact path="/users/:userId" render={(routerProps) => <UserContainer edit={false} {...routerProps} />} />
                     <Route exact path="/users" render={() => <UsersContainer />} />
                     <Route exact path="/items/new" render={() => <NuItem />} />
-                    <Route exact path="/items/:itemId/edit" render={(routerProps) => <ItemContainer edit={true} {...routerProps} />} />
+                    <Route exact path="/items/:itemId/edit" component={(routerProps) => <ItemContainer edit={true} {...routerProps} />} />
                     <Route exact path="/items/:itemId" render={(routerProps) => <ItemContainer {...routerProps} edit={false} />} />
                     <Route exact path="/items" render={() => <ItemsContainer />} />
                     <Route exact path='/login' render={() => <LoginComponent />}/>

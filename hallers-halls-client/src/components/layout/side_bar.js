@@ -25,7 +25,7 @@ export default class SideBar extends Component {
 
     render() {
         return (
-                <div className="col-xs-4">
+                <div className="col-4">
                     {this.renderAuthLinks()}
                 </div>
         )

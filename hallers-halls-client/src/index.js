@@ -16,7 +16,6 @@ import { PersistGate } from 'redux-persist/integration/react';
 import createExpirationTransform from 'redux-persist-transform-expire';
 import itemsReducer from './reducers/itemsReducer'
 import itemReducer from './reducers/itemReducer'
-import hardSet from 'redux-persist/lib/stateReconciler/hardSet'
 
 
 
@@ -30,11 +29,10 @@ const expireTransform = createExpirationTransform({
   });
 
 const persistConfig = {
-    key: 'nu7_root',
+    key: 'nu10_root',
     storage,
     blacklist: ['users', 'items', 'item'],
-    transforms: [expireTransform],
-    stateReconciler: hardSet
+    transforms: [expireTransform]
       }
   
 const rootReducer = combineReducers({
