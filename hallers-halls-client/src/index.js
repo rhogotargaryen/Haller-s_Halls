@@ -24,7 +24,6 @@ const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const expireTransform = createExpirationTransform({
     expireKey: 'persistExpiresAt',
     defaultState: {
-      auth: ''
     }
   });
 

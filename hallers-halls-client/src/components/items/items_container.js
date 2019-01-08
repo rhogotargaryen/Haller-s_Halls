@@ -12,8 +12,19 @@ class ItemsContainer extends Component {
     }
 
     renderItems = () => {
-        if(this.props.auth.includes("Bearer")) {
-            return this.props.items.map((x, i) => <Item key={i} item={x} />)
+        if (this.props.auth.includes("Bearer") && this.props.nested === true) {
+            return this.props.items.map((x, i) => {
+                if (x.user.id === this.props.user.id) {
+                    return <Item key={i} item={x} auth={this.props.auth}/>}
+            })
+        } else if (this.props.auth.includes("Bearer")) {
+            return this.props.items.map((x, i) => {
+                if (x.user.id === this.props.user.id) {
+                    return <Item key={i} item={x} auth={this.props.auth}/>
+                } else {
+                    return <Item key={i} item={x} />
+                }
+            })
         } else {
             return <Redirect to='/login' />
         }
@@ -26,7 +37,6 @@ class ItemsContainer extends Component {
             </div>
         )
     }
-            
 }
 
 const mapStateToProps = (state) => {

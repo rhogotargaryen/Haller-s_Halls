@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import editAuthedUser from '../../actions/editAutherUser'
+import editAuthedUser from '../../actions/editAuthedUser'
 import { Link } from 'react-router-dom'
 
 class authedUser extends Component {
@@ -10,15 +10,8 @@ class authedUser extends Component {
             name: this.props.user.name,
             email: this.props.user.email,
             id: this.props.user.id,
+            messages: this.props.user.messages
         }
-    }
-
-
-    startEdit = (event) => {
-        event.preventDefault()
-        this.setState({
-            edit: true
-        })
     }
 
     handleChange = (event) => {
@@ -61,7 +54,6 @@ class authedUser extends Component {
             return (
                     <div>
                         <h3> Your User Page </h3><br></br>
-                        {this.renderErrors()}
                         <br></br>
                         <div>Name: {this.props.user.name}</div>
                         <div>Email: {this.props.user.email}</div>

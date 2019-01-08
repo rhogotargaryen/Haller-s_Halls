@@ -16,13 +16,15 @@ class MainDisplay extends Component {
             <React.Fragment>
                 <Switch>
                     <Route exact path="/" render={() => <LoginComponent />} />
-                    <Route exact path="/users/:userId/edit" render={(routerProps) => <UserContainer edit={true} {...routerProps} />} />
+                    <Route exact path="/users/:userId/edit" component={(routerProps) => <UserContainer edit={true} {...routerProps} />} />
+                    <Route exact path="/users/:userId/items" component={(routerProps) => <ItemsContainer nested={true} {...routerProps} />} />
                     <Route exact path="/user/edit" render={(routerProps) => <UserContainer {...routerProps}/>} />
                     <Route exact path="/users/new" render={(routerProps) => <UserContainer new={true} {...routerProps} />} />
                     <Route exact path="/users/:userId" render={(routerProps) => <UserContainer edit={false} {...routerProps} />} />
                     <Route exact path="/users" render={() => <UsersContainer />} />
                     <Route exact path="/items/new" render={() => <NuItem />} />
                     <Route exact path="/items/:itemId/edit" component={(routerProps) => <ItemContainer edit={true} {...routerProps} />} />
+                    <Route exact path="/items/:itemId/user" component={(routerProps) => <UserContainer nested={true} {...routerProps} />} />
                     <Route exact path="/items/:itemId" render={(routerProps) => <ItemContainer {...routerProps} edit={false} />} />
                     <Route exact path="/items" render={() => <ItemsContainer />} />
                     <Route exact path='/login' render={() => <LoginComponent />}/>

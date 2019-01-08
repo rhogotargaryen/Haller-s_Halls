@@ -14,7 +14,7 @@ export default class HeadDisplay extends Component {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav mr-auto">
+            <ul className="navbar-nav mx-auto">
               <li className="nav-item">
                 <Link className="nav-link" to="/items">Items</Link>
               </li>
@@ -42,7 +42,7 @@ export default class HeadDisplay extends Component {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav mr-auto">
+            <ul className="navbar-nav mx-auto">
               <li className="nav-item">
                 <Link className="nav-link  disabled" to="#">Items</Link>
               </li>
@@ -54,7 +54,7 @@ export default class HeadDisplay extends Component {
                   Actions
                 </a>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <Link className="nav-link" to="users/new">Create User</Link>
+                  <Link className="nav-link" to="/users/new">Create User</Link>
                   <Link className="nav-link" to="/login">Log In!</Link>
                 </div>
               </li>
