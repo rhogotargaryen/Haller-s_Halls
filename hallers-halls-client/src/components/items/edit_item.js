@@ -25,8 +25,8 @@ class EditItem extends Component {
     }
 
     renderErrors() {
-        if(!!this.props.item.messages) {
-            return this.props.item.messages.map((x, i) => {
+        if(!!this.props.messages) {
+            return this.props.messages.map((x, i) => {
                 return <div key={i}>{x}</div>
             })
         }
@@ -54,4 +54,4 @@ class EditItem extends Component {
     }
 }
 
-export default connect()(EditItem)
+export default connect(state => {return {messages: state.messages}})(EditItem)

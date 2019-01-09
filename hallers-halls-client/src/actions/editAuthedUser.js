@@ -7,10 +7,10 @@ export default function editAuthedUser(user) {
             .then(resp => {return resp.json()})
             .then(userData => {
                 if (userData.errors) {
-                    return dispatch({type: "FAILED_USER", userData})
+                    return dispatch({type: "FAILED_USER", userData, messages: userData.errors})
                 } else {
-                    return dispatch({type: "SUCCESS_USER", userData})
+                    return dispatch({type: "SUCCESS_USER", userData, messages: ["success!"]})
                 }
-            }).catch(err => dispatch({type: "FAILED_USER", userData: {errors: ["somethign went wrong"] }}))
+            }).catch(err => dispatch({type: "FAILED_USER", messages: ["failed GENERIC edit auth action 2"] }))
     }
 }

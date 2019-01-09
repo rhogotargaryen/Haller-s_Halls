@@ -1,13 +1,19 @@
 export default function itemsReducer(state=[], action) {
     switch (action.type) {
         case("SUCCESS_ITEM"):
-            return action.item.messages
+            return action.messages
         case("FAILED_ITEM"):
-            return action.errors.map(x => x.detail)
+            return action.messages
         case("LOGOUT_USER"):
-            return null
+            return []
         case("DROP_ITEM"):
-            return null
+            return []
+        case("SENDING_USER"):
+            return ["uploading changes"]
+        case("SUCCESS_USER"):
+            return action.messages
+        case("DROP_MESSAGES"):
+            return []
         default:
             return state
     }

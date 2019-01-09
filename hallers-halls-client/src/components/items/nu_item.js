@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import postItemAction from '../../actions/postItemAction'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 class NuItem extends Component {
         state = {
@@ -8,7 +9,6 @@ class NuItem extends Component {
             description: "",
             id: null,
             price: null,
-            auth: this.props.auth,
         }
     
     componentWillMount() {
@@ -22,15 +22,15 @@ class NuItem extends Component {
     }
 
     renderErrors() {
-        if (!!this.props.item.messages) {
-            return this.props.item.messages.map((x, i) => {
+        if (!!this.props.messages) {
+            return this.props.messages.map((x, i) => {
                 return <div key={i}>{x}</div>
         })}
     }
 
     handleSubmitPost = (event) => {
         event.preventDefault()
-        this.props.dispatch(postItemAction(this.state))
+        this.props.dispatch(postItemAction({...this.state, auth: this.props.auth}))
     }    
 
     render() {
@@ -44,9 +44,10 @@ class NuItem extends Component {
                         PRICE: <input type="number" name="price" onChange={this.handleChange}/><br></br>
                     <button type="submit">Create Item</button>
                 </form><br></br>
-            </div>)
+                <Link to="/items" >back to items</Link>
+            </div>) 
     }
 
 }
 
-export default connect(state => {return {auth: state.login.auth, item: state.item}})(NuItem)
+export default connect(state => {return {auth: state.login.auth, item: state.item, messages: state.messages}})(NuItem)

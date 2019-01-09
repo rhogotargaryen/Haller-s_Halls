@@ -6,10 +6,10 @@ export default function postItemAction(itemInfo) {
             body: JSON.stringify({item: {...itemInfo}})})
             .then(resp => {return resp.json()})
             .then(item => {if (item.errors) {
-                return dispatch({type: "FAILED_ITEM", errors: item.errors})
+                return dispatch({type: "FAILED_ITEM", messages: item.errors})
             } else {
-                return dispatch({type: "SUCCESS_ITEM", item: {...item, messages: ["saved!"]}})
+                return dispatch({type: "SUCCESS_ITEM", item, messages: ["saved!"]})
             }})
-            .catch( err => {debugger; return dispatch({type: "FAILED_ITEM", err})})
+            .catch( err => { return dispatch({type: "FAILED_ITEM", messages: ["failed GENERIC post item action 1"]})})
     }
 }

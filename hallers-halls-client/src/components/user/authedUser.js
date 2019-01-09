@@ -10,7 +10,7 @@ class authedUser extends Component {
             name: this.props.user.name,
             email: this.props.user.email,
             id: this.props.user.id,
-            messages: this.props.user.messages
+            messages: this.props.messages
         }
     }
 
@@ -21,8 +21,8 @@ class authedUser extends Component {
     }
 
     renderErrors() {
-        if(!!this.props.user.messages) {
-            return this.props.user.messages.map((x, i) => {
+        if(!!this.props.messages) {
+            return this.props.messages.map((x, i) => {
                 return <div key={i}>{x}</div>
             })
         }
@@ -67,4 +67,4 @@ class authedUser extends Component {
 
 
 
-export default connect(state => {return {user: state.user, auth: state.login.auth}}, {editAuthedUser})(authedUser)
+export default connect(state => {return {user: state.user, auth: state.login.auth, messages: state.messages}}, {editAuthedUser})(authedUser)
