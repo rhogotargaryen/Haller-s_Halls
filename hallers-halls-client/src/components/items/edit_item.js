@@ -16,7 +16,9 @@ class EditItem extends Component {
         }
     }
 
-
+    componentWillMount() {
+        this.props.dispatch({type: "DROP_MESSAGES"})
+    }
 
     handleChange = (event) => {
         this.setState({
@@ -27,7 +29,7 @@ class EditItem extends Component {
     renderErrors() {
         if(!!this.props.messages) {
             return this.props.messages.map((x, i) => {
-                return <div key={i}>{x}</div>
+                return <div className="alert alert-light" key={i}>{x}</div>
             })
         }
     }
@@ -39,17 +41,20 @@ class EditItem extends Component {
 
     render() {
             return (
-            <div>
-                <h3> Your Item Page (Editting) </h3><br></br>
-                {this.renderErrors()}
-                    <form onSubmit={this.handleSubmitEdit}>
-                        <input type="text" name="name" value={this.state.name} onChange={this.handleChange}/><br></br>
-                        <input type="text" name="description" value={this.state.description} onChange={this.handleChange}/><br></br>
-                        <input type="number" name="price" value={this.state.price} onChange={this.handleChange}/><br></br>
-                        <div>Id: {this.props.item.id} <strong>can not be editted</strong></div>
-                    <button type="submit">Save Changes</button>
-                </form><br></br>
-                <Link to={`/items/${this.props.item.id}`}>Back to your Item Page</Link>
+            <div className="card container" style={{width: "18rem"}}>
+                <div className="card-body">
+                    <h3> Your Item Page (Editting) </h3><br></br>
+                                {this.renderErrors()}
+                        <form onSubmit={this.handleSubmitEdit}>
+                            <input type="text" name="name" value={this.state.name} onChange={this.handleChange}/><br></br>
+                            <input type="text" name="description" value={this.state.description} onChange={this.handleChange}/><br></br>
+                            <input type="number" name="price" value={this.state.price} onChange={this.handleChange}/><br></br>
+                            <div>Id: {this.props.item.id} <strong>can not be editted</strong></div>
+                        <button className="btn btn-light" type="submit">Save Changes</button>
+                    </form><br></br>
+                    <Link className="badge badge-light" to={`/items/${this.props.item.id}`}>Back to your Item Page</Link>
+                    <Link className="badge badge-light" to={`/items`}>Back to Items Page</Link>
+                </div>
             </div>)
     }
 }

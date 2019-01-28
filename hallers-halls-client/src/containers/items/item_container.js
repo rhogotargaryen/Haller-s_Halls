@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import fetchItem from '../../actions/fetchItem'
-import Item from './item'
-import EditItem from './edit_item'
-import NuItem from './nu_item'
+import Item from '../../components/items/item'
+import EditItem from '../../components/items/edit_item'
+import NuItem from '../../components/items/nu_item'
 
 class ItemContainer extends Component {
 

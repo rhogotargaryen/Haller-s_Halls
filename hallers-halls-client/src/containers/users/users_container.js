@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import fetchUsers from '../../actions/fetchUsers'
-import User from './user'
+import User from '../../components/user/user'
 
 
 class UsersContainer extends Component {
@@ -13,7 +13,7 @@ class UsersContainer extends Component {
 
     renderUsers = () => {
         if(this.props.auth.includes("Bearer")) {
-            return this.props.users.map((x, i) => <User key={i} user={x}/>)
+            return this.props.users.map((x, i) => <User key={i} user={x} displayOnly={false}/>)
         } else {
             return <Redirect to='/login' />
         }
@@ -21,7 +21,7 @@ class UsersContainer extends Component {
 
     render() {
         return (
-            <div>
+            <div className="row justify-content-center">
                 {this.renderUsers()}
             </div>
         )

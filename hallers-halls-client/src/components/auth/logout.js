@@ -11,16 +11,26 @@ class LogoutComponent extends Component {
 
     render() {
         if (this.props.auth === "logging out") {
-            return <h3>Logging you out now</h3>
+            return <h5>Logging you out now</h5>
         }
         else if (this.props.auth.includes("Bearer")) {
             return (
-                <div> 
-                    <button href="" onClick={this.logOut}>logout</button>
+                <div className="card container" style={{width: "18rem"}}> 
+                    <div className="card-body">
+                        <h5>Thanks For Visiting!</h5>
+                        <br></br>
+                        <button className="btn btn-light" href="" onClick={this.logOut}>logout</button>
+                    </div>
                 </div>
             )
         } else {
-            return <h3>Not Logged In</h3>
+            return (
+            <div className="card container" style={{width: "18rem"}}> 
+                <div className="card-body">
+                    <h5>Not Logged In</h5>
+                </div>
+            </div>
+            )
         }
     }
 }

@@ -17,19 +17,21 @@ class LoginComponent extends Component {
 
     renderLoginForm = (message) => {
         return(
-            <div>
-                <h3>{message}</h3>
-                <form id='login-form' onSubmit={this.handleSubmit}>
-                <br></br>
-                    <label>Email:
-                    <input type='textfield' onChange={this.handleChange} name="email"/>
-                    </label><br></br>
-                <br></br>
-                    <label>Password:
-                    <input type='password' onChange={this.handleChange} name="password"/>
-                <br></br></label><br></br>
-                    <input type='submit'/>
-                </form>
+            <div className="card container" style={{width: "18rem"}}> 
+                <div className="card-body">
+                    <h5>{message}</h5>
+                    <form id='login-form' onSubmit={this.handleSubmit}>
+                    <br></br>
+                        <label>Email:
+                        <input type='textfield' onChange={this.handleChange} name="email"/>
+                        </label><br></br>
+                    <br></br>
+                        <label>Password:
+                        <input type='password' onChange={this.handleChange} name="password"/>
+                    <br></br></label><br></br>
+                        <input type='submit'/>
+                    </form>
+                </div>
             </div>
         )
     }

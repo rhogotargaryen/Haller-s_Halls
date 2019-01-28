@@ -12,6 +12,8 @@ export default function itemsReducer(state=[], action) {
             return ["uploading changes"]
         case("SUCCESS_USER"):
             return action.messages
+        case("FAILED_USER"):
+            return action.messages
         case("DROP_MESSAGES"):
             return []
         default:

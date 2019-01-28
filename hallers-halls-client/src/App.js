@@ -14,6 +14,7 @@ class App extends Component {
       <Router>
           <React.Fragment>
               <HeadDisplay auth={this.props.auth} user={this.props.user}/>
+              <br></br>
                 <div className="container" syle='height: 100vh'>
                   <div className="row" >
                   <SideBar auth={this.props.auth} user={this.props.user}/>

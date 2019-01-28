@@ -4,6 +4,8 @@ export default function itemsReducer(state=[], action) {
             return action.items
         case("LOGOUT_USER"):
             return []
+        //case("SUCCESS_ITEM"):
+            //return [...state, action.item]
         default:
             return state
     }

@@ -25,11 +25,12 @@ const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const expireTransform = createExpirationTransform({
     expireKey: 'persistExpiresAt',
     defaultState: {
+        auth: ""
     }
   });
 
 const persistConfig = {
-    key: 'neux_root',
+    key: 'neux1_root',
     storage,
     blacklist: ['users', 'items', 'item'],
     transforms: [expireTransform]

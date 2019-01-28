@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import fetchItems from '../../actions/fetchItems'
-import Item from './item'
+import Item from '../../components/items/item'
 
 
 class ItemsContainer extends Component {
@@ -13,8 +13,9 @@ class ItemsContainer extends Component {
 
     renderItems = () => {
         if (this.props.auth.includes("Bearer") && this.props.nested === true) {
+            const a = parseInt(this.props.match.params.userId)
             return this.props.items.map((x, i) => {
-                if (x.user.id === this.props.user.id) {
+                if (x.user.id === a) {
                     return <Item key={i} item={x} auth={this.props.auth}/>}
             })
         } else if (this.props.auth.includes("Bearer")) {
@@ -32,7 +33,7 @@ class ItemsContainer extends Component {
 
     render() {
         return (
-            <div className="flex-container justify-items-center">
+            <div className="row justify-content-center">
                 {this.renderItems()}
             </div>
         )

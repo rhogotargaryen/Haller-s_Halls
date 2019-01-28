@@ -15,7 +15,7 @@ class SignUp extends Component {
     renderErrors() {
         if(!!this.props.user.messages) {
             return this.props.user.messages.map((x, i) => {
-                return <div key={i}>{x}</div>
+                return <div className="alert alert-light" key={i}>{x}</div>
             })
         }
     }
@@ -29,7 +29,6 @@ class SignUp extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
         this.props.postUserAction(this.state)
-        this.props.loginAction(this.state)
     }
 
     render() {
@@ -37,18 +36,20 @@ class SignUp extends Component {
             return <Redirect to={`/users/${this.props.user.id}`} />
         }
         return (
-            <div>
-                <h3> Sign Up </h3><br></br>
-                    <div>{this.renderErrors()}</div>
-                <form onSubmit={this.handleSubmit}>
-                    <label>Name: </label>
-                    <input type="text" name="name" value={this.state.name} onChange={this.handleChange}/><br></br>
-                    <label>Email: </label>
-                    <input type="text" name="email" value={this.state.email} onChange={this.handleChange}/><br></br>
-                    <label>Password: </label>
-                    <input type="password" name="password" value={this.state.password} onChange={this.handleChange}/><br></br>
-                    <button type="submit">Create User</button>
-                </form><br></br>
+            <div className="card container" style={{width: "18rem"}}> 
+                <div className="card-body">
+                    <h5> Sign Up </h5><br></br>
+                        <div>{this.renderErrors()}</div>
+                    <form onSubmit={this.handleSubmit}>
+                        <label>Name: </label>
+                        <input type="text" name="name" value={this.state.name} onChange={this.handleChange}/><br></br>
+                        <label>Email: </label>
+                        <input type="text" name="email" value={this.state.email} onChange={this.handleChange}/><br></br>
+                        <label>Password: </label>
+                        <input type="password" name="password" value={this.state.password} onChange={this.handleChange}/><br></br>
+                        <button className="btn btn-light" type="submit">Create User</button>
+                    </form><br></br>
+                </div>
             </div>
         )
     }

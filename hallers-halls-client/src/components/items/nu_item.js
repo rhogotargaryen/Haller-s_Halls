@@ -14,7 +14,7 @@ class NuItem extends Component {
     componentWillMount() {
         this.props.dispatch({type: "DROP_ITEM"})
     }
-
+    
     handleChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
@@ -24,7 +24,7 @@ class NuItem extends Component {
     renderErrors() {
         if (!!this.props.messages) {
             return this.props.messages.map((x, i) => {
-                return <div key={i}>{x}</div>
+                return <div className="alert alert-light" key={i}>{x}</div>
         })}
     }
 
@@ -35,16 +35,18 @@ class NuItem extends Component {
 
     render() {
         return (
-            <div>
-                <h3> Create an Item </h3><br></br>
-                {this.renderErrors()}
-                    <form onSubmit={this.handleSubmitPost}>
-                        NAME: <input type="text" name="name" value={this.state.name} onChange={this.handleChange}/><br></br>
-                        DESC: <input type="text" name="description" value={this.state.description} onChange={this.handleChange}/><br></br>
-                        PRICE: <input type="number" name="price" onChange={this.handleChange}/><br></br>
-                    <button type="submit">Create Item</button>
-                </form><br></br>
-                <Link to="/items" >back to items</Link>
+            <div className="card container" style={{width: "18rem"}}>
+                <div className="card-body">
+                    <h5> Create an Item </h5><br></br>
+                    {this.renderErrors()}
+                        <form onSubmit={this.handleSubmitPost}>
+                            NAME: <input type="text" name="name" value={this.state.name} onChange={this.handleChange}/><br></br>
+                            DESC: <input type="text" name="description" value={this.state.description} onChange={this.handleChange}/><br></br>
+                            PRICE: <input type="number" name="price" onChange={this.handleChange}/><br></br>
+                        <button className="btn btn-light" type="submit">Create Item</button>
+                    </form><br></br>
+                    <Link className="badge badge-light" to="/items" >back to items</Link>
+                </div>
             </div>) 
     }
 

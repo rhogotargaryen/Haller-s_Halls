@@ -8,6 +8,7 @@ export default function postItemAction(itemInfo) {
             .then(item => {if (item.errors) {
                 return dispatch({type: "FAILED_ITEM", messages: item.errors})
             } else {
+                console.log("d")
                 return dispatch({type: "SUCCESS_ITEM", item, messages: ["saved!"]})
             }})
             .catch( err => { return dispatch({type: "FAILED_ITEM", messages: ["failed GENERIC post item action 1"]})})
