@@ -55,7 +55,7 @@ export default class HeadDisplay extends Component {
                 </a>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <Link className="nav-link" to="/users/new">Create User</Link>
-                  <Link className="nav-link" to="/login">Log In!</Link>
+                  <Link className="nav-link" to="/login">Log In</Link>
                 </div>
               </li>
             </ul>
